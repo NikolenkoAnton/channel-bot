@@ -2,9 +2,11 @@ import TelegramBot from 'node-telegram-bot-api';
 import { config } from 'dotenv';
 config();
 // Замените 'YOUR_TELEGRAM_BOT_TOKEN' на токен вашего бота
-const token = process.env.TELEGRAM_BOT_TOKEN;
+const token =
+  process.env.TELEGRAM_BOT_TOKEN ||
+  '7142305379:AAGtqs1yBJGfmjStgdR0piqBaXsm0woC09Y';
 const bot = new TelegramBot(token, { polling: true });
-const channelUsername = process.env.CHANNEL_NAME;
+const channelUsername = process.env.CHANNEL_NAME || 'bannedwar';
 const channelLink = `https://t.me/${channelUsername}`;
 
 bot.on('channel_post', async (msg) => {
