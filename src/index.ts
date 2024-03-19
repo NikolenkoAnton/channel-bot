@@ -16,14 +16,16 @@ bot.on('channel_post', async (msg) => {
       return;
     }
     //без предпросмотра для этой ссылки
-    const channelLinkModified = channelLink.replace(/^https?:\/\//, '$&\u202F');
-    const signature = `\n\n\n[War Zone ✙ ➔ подписаться](${channelLinkModified})`;
+    const signature = `\n\n\n[War Zone ✙ ➔ подписаться](${channelLink})`;
+    const urlRegex = /https?:\/\/[^\s]+/g;
 
     if (!caption && msg.text) {
+      const hasOtherLinks = urlRegex.test(msg.text);
       await bot.editMessageText(msg.text + signature, {
         chat_id: chatId,
         message_id: messageId,
         parse_mode: 'Markdown',
+        disable_web_page_preview: !hasOtherLinks,
       });
     } else {
       await bot.editMessageCaption(caption + signature, {
