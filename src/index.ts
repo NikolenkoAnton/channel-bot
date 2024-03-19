@@ -15,7 +15,9 @@ bot.on('channel_post', async (msg) => {
     if (msg.forward_from_message_id) {
       return;
     }
-    const signature = `\n\n\n[Подписывайтесь на канал](${channelLink})`;
+    //без предпросмотра для этой ссылки
+    const channelLinkModified = channelLink.replace(/^https?:\/\//, '$&\u202F');
+    const signature = `\n\n\n[War Zone ✙ ➔ подписаться](${channelLinkModified})`;
 
     if (!caption && msg.text) {
       await bot.editMessageText(msg.text + signature, {
