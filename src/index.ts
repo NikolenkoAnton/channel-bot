@@ -16,7 +16,7 @@ bot.on('channel_post', async (msg) => {
       return;
     }
     //без предпросмотра для этой ссылки
-    const signature = `\n[War Zone ✙ ➔ подписаться](${channelLink})`;
+    const signature = `\n\n[War Zone ✙ ➔ подписаться](${channelLink})`;
     const urlRegex = /https?:\/\/[^\s]+/g;
 
     if (!caption && msg.text) {
