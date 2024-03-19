@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rimraf dist",
     "build": "tsc",
-    "start": "node --experimental-modules --es-module-specifier-resolution=node dist/index.js"
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,9 +16,11 @@
     "@types/node": "^20.11.29",
     "dotenv": "^16.4.5",
     "node-telegram-bot-api": "^0.65.1",
+    "rimraf": "^5.0.5",
     "typescript": "^5.4.2"
   },
   "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.4",
     "ts-node": "^10.9.2"
   }
 }
