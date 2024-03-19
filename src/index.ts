@@ -7,10 +7,6 @@ const bot = new TelegramBot(token, { polling: true });
 const channelUsername = process.env.CHANNEL_NAME;
 const channelLink = `https://t.me/${channelUsername}`;
 
-const mediaGroups: {
-  [key: string]: TelegramBot.InputMediaPhoto[] | TelegramBot.InputMediaVideo[];
-} = {};
-
 bot.on('channel_post', async (msg) => {
   try {
     const chatId = msg.chat.id;
@@ -22,13 +18,13 @@ bot.on('channel_post', async (msg) => {
     const signature = `\n\n\n[Подписывайтесь на канал](${channelLink})`;
 
     if (!caption && msg.text) {
-      await bot.editMessageText(msg.text || '' + signature, {
+      await bot.editMessageText(msg.text + signature, {
         chat_id: chatId,
         message_id: messageId,
         parse_mode: 'Markdown',
       });
     } else {
-      await bot.editMessageCaption(caption || '' + signature, {
+      await bot.editMessageCaption(caption + signature, {
         chat_id: chatId,
         message_id: messageId,
         parse_mode: 'Markdown',
