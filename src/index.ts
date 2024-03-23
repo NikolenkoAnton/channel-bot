@@ -28,6 +28,9 @@ bot.on('channel_post', async (msg) => {
         disable_web_page_preview: !hasOtherLinks,
       });
     } else {
+      if (!caption && msg.media_group_id) {
+        return;
+      }
       await bot.editMessageCaption(caption + signature, {
         chat_id: chatId,
         message_id: messageId,
