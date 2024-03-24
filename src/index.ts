@@ -75,8 +75,11 @@ bot.on('channel_post', async (msg) => {
     const urlRegex = /https?:\/\/[^\s]+/g;
 
     if (!caption && msg.text) {
-      const hasOtherLinks = msg.entities.some(
-        (entity) => entity.type === 'text_link' || entity.type === 'url'
+      const hasOtherLinks = Boolean(
+        msg.entities &&
+          msg.entities.some(
+            (entity) => entity.type === 'text_link' || entity.type === 'url'
+          )
       );
       const formattedText = convertEntitiesToHTML(msg.text, msg.entities);
       await bot.editMessageText(formattedText + signature, {
